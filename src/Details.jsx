@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import fetchPet from "./fetchPet";
 import Carousel from "./Carousel";
+import Carousel2 from "./Carousel2";
 import ErrorBoundary from "./ErrorBoundary";
 import { useState, useContext } from "react";
 import Modal from "./Modal";
@@ -28,7 +29,8 @@ const Details = () => {
   const pet = results.data.pets[0];
   return (
     <div className="details">
-      <Carousel images={pet.images} />
+      {/* <Carousel images={pet.images} /> */}
+      <Carousel2 images={pet.images} />
       <div>
         <h1>{pet.name}</h1>
         <h2>
