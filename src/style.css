@@ -364,3 +364,10 @@ form .pet {
 .mini .loader {
   font-size: 34px;
 }
+
+.adoptedPet{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 15px;
+}
