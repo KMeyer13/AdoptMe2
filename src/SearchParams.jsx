@@ -1,9 +1,10 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import Results from "./Results";
 import { useQuery } from "@tanstack/react-query";
 import fetchSearch from "./fetchSearch";
 import useBreedList from "./useBreedList";
 import AdoptedPetContext from "./AdoptedPetContext";
+import Pagination from "./Pagination";
 
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
@@ -19,6 +20,21 @@ const SearchParams = () => {
 
   const results = useQuery(["search", requestParams], fetchSearch);
   const pets = results?.data?.pets ?? [];
+
+  const Pagination = ({ pets, itemsPerPage }) => {
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const totalItems = pets.length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = pets.slice(indexOfFirstItem, indexOfLastItem);
+
+    const onPageChange = (pageNumber) => {
+      setCurrentPage(pageNumber);
+    };
+  };
 
   if (results.isLoading) {
     return (
